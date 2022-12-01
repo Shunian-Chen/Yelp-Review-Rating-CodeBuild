@@ -23,12 +23,12 @@ phases:
       
   build:
     commands:
-      - building...
+      - echo building...
         make deploy
       
   post_build:
     commands:
-      - apt-get install jq -y
+      - yum install jq -y
       - ContainerName="yelp_review"
       - ImageURI=$(cat imageDetail.json | jq -r '.ImageURI')
       - printf '[{"name":"CONTAINER_NAME","imageUri":"IMAGE_URI"}]' > imagedefinitions.json
