@@ -24,7 +24,7 @@ phases:
   build:
     commands:
       - building...
-      make deploy
+        make deploy
       
   post_build:
     commands:
