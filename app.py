@@ -1,6 +1,9 @@
 import gradio as gr
 from transformers import pipeline
 
+classifier = pipeline(
+        "text-classification", model="Shunian/yelp_review_rating_reberta_base", top_k=1
+    )
 
 def analytics_emo(x):
     data = classifier(x)[0]
@@ -8,19 +11,16 @@ def analytics_emo(x):
 
 
 if __name__ == "__main__":
-    classifier = pipeline(
-        "text-classification", model="Shunian/yelp_review_rating_reberta_base", top_k=1
-    )
 
     with gr.Blocks() as demo:
         gr.Markdown(
-            "<center><h1>Comment rating</h1> A Simple Comment Rating Tool</center>"
+            "<center><h1>Comment rating</h1> A Simple Comment Rating Prediction Tool</center>"
         )
         with gr.Tab("Review Rating"):
             with gr.Row():
                 with gr.Column(scale=1, min_width=600):
                     analytics_input = gr.Textbox(
-                        label="Text Content",
+                        label="Review Content",
                         lines=4,
                         max_lines=100,
                         placeholder="Analyzing Rating...",
@@ -35,4 +35,4 @@ if __name__ == "__main__":
             inputs=analytics_input,
             outputs=text_output,
         )
-    demo.launch(debug=True, server_name="0.0.0.0", share=True, server_port=5000)
+    demo.launch(debug=True, server_name="0.0.0.0", server_port=5000)
