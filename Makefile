@@ -1,7 +1,7 @@
 install:
 	pip install --upgrade pip &&\
 		pip install -r requirements.txt\
-		pip install torch --extra-index-url https://download.pytorch.org/whl/cu116\
+		#pip install torch --extra-index-url https://download.pytorch.org/whl/cu116\
 		pip cache purge
 
 format:
